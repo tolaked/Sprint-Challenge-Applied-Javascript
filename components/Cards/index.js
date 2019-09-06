@@ -61,7 +61,6 @@ axios
       );
       largeContainer.appendChild(newCard);
     });
-    console.log(response.data);
   });
 
 let largeContainer = document.querySelector(".cards-container");
