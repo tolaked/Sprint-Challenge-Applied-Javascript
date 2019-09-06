@@ -64,7 +64,9 @@ axios
     console.log(response.data);
   });
 
-function articleCard(headline, imgUrl, authorsName) {
+let largeContainer = document.querySelector(".cards-container");
+
+function articleCard(headline, imageUrl, authorsName) {
   let topDiv = document.createElement("div");
   topDiv.classList.add("card");
 
@@ -77,10 +79,13 @@ function articleCard(headline, imgUrl, authorsName) {
   let Div3 = document.createElement("div");
   Div3.classList.add("img-container");
   let image = document.createElement("img");
-  image.setAttribute("src");
+  image.setAttribute("src", imageUrl);
   Div3.appendChild(image);
 
   let span = document.createElement("span");
+  Div1.textContent = headline;
+
+  span.textContent = authorsName;
 
   Div2.appendChild(Div3);
   Div2.appendChild(span);
