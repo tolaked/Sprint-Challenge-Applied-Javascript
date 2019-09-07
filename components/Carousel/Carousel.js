@@ -22,39 +22,37 @@ let allImages;
 let currentIndex;
 
 function carouselComp() {
-  let topDiv = document.createElement("div");
-  topDiv.classList.add("carousel");
+  let index = 0;
+  let images = ["mountains", "computer", "trees", "turntable"];
+
+  let firstImage = document.createElement("img");
+  firstImage.style.display = "block";
+  firstImage.src = `./assets/carousel/${images[index]}.jpeg`;
 
   let seconDiv = document.createElement("div");
   seconDiv.classList.add("left-button");
-
-  let firstImage = document.createElement("img");
-  firstImage.setAttribute("src", "./assets/carousel/mountains.jpeg");
-
-  let secondImage = document.createElement("img");
-  secondImage.setAttribute("src", "./assets/carousel/computer.jpeg");
-
-  let thirdImage = document.createElement("img");
-  thirdImage.setAttribute("src", "./assets/carousel/trees.jpeg");
-
-  let fourtImage = document.createElement("img");
-  fourtImage.setAttribute("src", "./assets/carousel/trees.jpeg");
+  seconDiv.addEventListener("click", () => {
+    index -= 1;
+    if (index < 0) {
+      index = images.length - 1;
+    }
+    firstImage.src = `./assets/carousel/${images[index]}.jpeg`;
+  });
 
   let thirDiv = document.createElement("div");
   thirDiv.classList.add("right-button");
 
-  allImages = [firstImage, secondImage, thirdImage, fourtImage];
-  allImages.forEach((element, index) => {
-    seconDiv.addEventListener("click", () => {
-      if ((element.style.display = "none")) {
-        element.style.display = "block";
-      } else {
-        element.style.display = "none";
-      }
-    });
+  thirDiv.addEventListener("click", () => {
+    index += 1;
+    if (index >= images.length) index = 0;
+    firstImage.src = `./assets/carousel/${images[index]}.jpeg`;
+    console.log(firstImage.src);
   });
 
-  let allElements = [seconDiv, firstImage, thirdImage, fourtImage, thirDiv];
+  let topDiv = document.createElement("div");
+  topDiv.classList.add("carousel");
+
+  let allElements = [seconDiv, thirDiv, firstImage];
 
   allElements.map(element => topDiv.appendChild(element));
 

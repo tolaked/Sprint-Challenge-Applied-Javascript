@@ -8,7 +8,7 @@
 //  The tab component should look like this:
 //    <div class="tab">topic here</div>
 
-const bigContainer = document.querySelector(".header-container");
+const topicContainer = document.querySelector(".topics");
 
 axios
   .get(`https://lambda-times-backend.herokuapp.com/topics`)
@@ -16,13 +16,12 @@ axios
     // Remember response is an object, response.data is an array.
     let topicsTabs = response.data.topics;
 
-    let newTabs = allTbas();
     topicsTabs.forEach(topic => {
-      let h1 = document.createElement("h1");
-      h1.textContent = topic;
-      newTabs.appendChild(h1);
+      let newTabs = allTbas();
+      newTabs.textContent = topic;
+      topicContainer.appendChild(newTabs);
     });
-    bigContainer.appendChild(newTabs);
+    console.log(topicContainer);
   })
   .catch(error => {
     console.log("Error:", error);
@@ -31,6 +30,10 @@ axios
 function allTbas() {
   let newDiv = document.createElement("div");
   newDiv.classList.add("tab");
+
+  newDiv.addEventListener("click", () => {
+    newDiv.classList.toggle("active-tab");
+  });
 
   return newDiv;
 }
