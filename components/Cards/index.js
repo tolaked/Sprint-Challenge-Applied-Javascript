@@ -17,3 +17,80 @@
 // </div>
 //
 // Create a card for each of the articles and add the card to the DOM.
+
+axios
+  .get("https://lambda-times-backend.herokuapp.com/articles")
+  .then(response => {
+    response.data.articles["javascript"].forEach(article => {
+      let newCard = articleCard(
+        article.headline,
+        article.authorPhoto,
+        article.authorName
+      );
+      largeContainer.appendChild(newCard);
+    });
+    response.data.articles["bootstrap"].forEach(article => {
+      let newCard = articleCard(
+        article.headline,
+        article.authorPhoto,
+        article.authorName
+      );
+      largeContainer.appendChild(newCard);
+    });
+    response.data.articles["technology"].forEach(article => {
+      let newCard = articleCard(
+        article.headline,
+        article.authorPhoto,
+        article.authorName
+      );
+      largeContainer.appendChild(newCard);
+    });
+    response.data.articles["jquery"].forEach(article => {
+      let newCard = articleCard(
+        article.headline,
+        article.authorPhoto,
+        article.authorName
+      );
+      largeContainer.appendChild(newCard);
+    });
+    response.data.articles["node"].forEach(article => {
+      let newCard = articleCard(
+        article.headline,
+        article.authorPhoto,
+        article.authorName
+      );
+      largeContainer.appendChild(newCard);
+    });
+  });
+
+let largeContainer = document.querySelector(".cards-container");
+
+function articleCard(headline, imageUrl, authorsName) {
+  let topDiv = document.createElement("div");
+  topDiv.classList.add("card");
+
+  let Div1 = document.createElement("div");
+  Div1.classList.add("headline");
+
+  let Div2 = document.createElement("div");
+  Div2.classList.add("author");
+
+  let Div3 = document.createElement("div");
+  Div3.classList.add("img-container");
+  let image = document.createElement("img");
+  image.setAttribute("src", imageUrl);
+  Div3.appendChild(image);
+
+  let span = document.createElement("span");
+  Div1.textContent = headline;
+
+  span.textContent = authorsName;
+
+  Div2.appendChild(Div3);
+  Div2.appendChild(span);
+
+  topDiv.appendChild(Div1);
+  topDiv.appendChild(Div2);
+
+  return topDiv;
+}

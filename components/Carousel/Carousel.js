@@ -17,3 +17,50 @@
     <div class="right-button"> > </div>
   </div>
 */
+
+let allImages;
+let currentIndex;
+
+function carouselComp() {
+  let index = 0;
+  let images = ["mountains", "computer", "trees", "turntable"];
+
+  let firstImage = document.createElement("img");
+  firstImage.style.display = "block";
+  firstImage.src = `./assets/carousel/${images[index]}.jpeg`;
+
+  let seconDiv = document.createElement("div");
+  seconDiv.classList.add("left-button");
+  seconDiv.addEventListener("click", () => {
+    index -= 1;
+    if (index < 0) {
+      index = images.length - 1;
+    }
+    firstImage.src = `./assets/carousel/${images[index]}.jpeg`;
+  });
+
+  let thirDiv = document.createElement("div");
+  thirDiv.classList.add("right-button");
+
+  thirDiv.addEventListener("click", () => {
+    index += 1;
+    if (index >= images.length) index = 0;
+    firstImage.src = `./assets/carousel/${images[index]}.jpeg`;
+    console.log(firstImage.src);
+  });
+
+  let topDiv = document.createElement("div");
+  topDiv.classList.add("carousel");
+
+  let allElements = [seconDiv, thirDiv, firstImage];
+
+  allElements.map(element => topDiv.appendChild(element));
+
+  return topDiv;
+}
+const imgCrad = carouselComp();
+
+const bigcontainer = document.querySelector(".carousel-container");
+
+bigcontainer.appendChild(imgCrad);
+console.log(bigcontainer);
